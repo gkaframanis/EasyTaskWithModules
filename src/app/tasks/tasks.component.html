@@ -1,0 +1,25 @@
+@if (isAddingTask) {
+  <!--  Here we put the selector-->
+  <app-new-task (close)="onCloseAddTask()" [userId]="userId"/>
+}
+
+<section id="tasks">
+  <header>
+    <h2>{{ name }}'s Tasks</h2>
+    <menu>
+      <button (click)="onStartAddTask()">Add Task</button>
+    </menu>
+  </header>
+  <ul>
+    @for (task of selectedUserTasks; track task.id) {
+      <li>
+        <!--        In the parent component's template, you can listen for the event using Angular's event binding
+        syntax () and define a method to handle the event-->
+        <!--        Angular’s template syntax allows you to bind event handlers in the parent component’s template.
+        The parent template can access any method defined in its component class.-->
+        <app-task [task]="task"/>
+      </li>
+
+    }
+  </ul>
+</section>

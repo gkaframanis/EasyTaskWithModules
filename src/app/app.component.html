@@ -1,0 +1,35 @@
+<app-header/>
+
+<main>
+  <ul id="users">
+    <!--      In the parent component's template, you can listen for the event using  -->
+    <!--      Angular's event binding syntax () and define a method to handle the event.  -->
+    <!--      This $event variable is not just available when working with custom events! It can also be used on -->
+    <!--      built-in events (like 'click') to get hold of potentially emitted values.-->
+
+    <!--    We dynamically output data here and Angular wants internally to keep track of every item that is being
+    rendered, so if the input list data change angular could easily reuse already rendered items and doesn't
+     have to recreate the list every time the list changes -->
+
+    <!--    @for, @if, @else if, @else new features of Angular 17 and after-->
+    <!--   *ngFor is a structural directive-->
+    <!--    <li *ngFor='let user of users">-->
+    <!--    With track we tell Angular which unique identification criteria can be assigned by Angular
+            behind the scenes to every list item. It connects the id to every list item it outputs and
+            helps update the list efficiently if the list changes.-->
+    @for (user of users; track user.id) {
+      <li>
+        <app-user [user]="user" [selected]="user.id === selectedUserId" (select)="onSelectUser($event)"/>
+      </li>
+    }
+  </ul>
+  <!--  In addition you can also add 'else if' blocks if you wanted to check for alternative conditions.-->
+  <!--  <app-tasks *ngIf="selectedUser" else fallback [name]="selectedUser.name" />-->
+  @if (selectedUser) {
+    <app-tasks [userId]="selectedUser.id" [name]="selectedUser.name"/>
+  } @else {
+    <!--    <ng-template #fallback> -->
+    <p id="fallback">Select a user to see their tasks!</p>
+    <!--    </ng-template>-->
+  }
+</main>

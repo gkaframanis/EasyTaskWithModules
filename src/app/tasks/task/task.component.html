@@ -1,0 +1,14 @@
+<app-card>
+  <article>
+    <h2>{{ task.title }}!</h2>
+    <!--    Funnel it through a pipe to get the date in a different format-->
+    <!--    The pipe can be one the Angular's built-in, or we can create our own ones.-->
+    <!--    If we want to configure the date options, we do it like this: eg. date: 'short'-->
+    <time>{{ task.dueDate | date: 'fullDate' }}</time>
+    <p>{{ task.summary }}</p>
+    <p class="actions">
+      <button (click)="onCompleteTask()">Complete</button>
+    </p>
+  </article>
+</app-card>
+

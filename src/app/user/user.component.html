@@ -1,0 +1,12 @@
+<app-card>
+  <!--  Event listener its name inside parentheses  -->
+  <button [class.active]="selected" (click)="onSelectUser()">
+    <!--    Here we use property binding  -->
+    <img [src]="imagePath" [alt]="user.name"/>
+    <!--    Here we use string interpolation -->
+    <!--    <span>{{ selectedUser.name }}</span>-->
+    <!--    We have to call the signal as a function  -->
+    <!--    Executes the signal's read function which gives the value currently stored in the signal  -->
+    <span>{{ user.name }}</span>
+  </button>
+</app-card>
